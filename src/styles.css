@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background: #121212;
+  color: white;
+  font-family: Arial;
+}
+
+input, button {
+  background: #1e1e1e;
+  color: white;
+  border: 1px solid #333;
+}
