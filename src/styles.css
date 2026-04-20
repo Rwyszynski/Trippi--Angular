@@ -1,11 +1,36 @@
 body {
-  background: #121212;
+  margin: 0;
+  background: #0f0f0f;
   color: white;
   font-family: Arial;
 }
 
-input, button {
-  background: #1e1e1e;
+.chat-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.users {
+  width: 250px;
+  background: #1a1a1a;
+  padding: 10px;
+}
+
+.chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  flex: 1;
+  padding: 10px;
+  overflow: auto;
+}
+
+input {
+  background: #222;
   color: white;
-  border: 1px solid #333;
+  border: none;
+  padding: 10px;
 }

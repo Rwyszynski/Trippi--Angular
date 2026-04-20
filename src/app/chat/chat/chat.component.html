@@ -1,1 +1,23 @@
-<p>chat works!</p>
+<div class="chat-layout">
+
+  <div class="users">
+    <h3>Users</h3>
+    <div *ngFor="let u of users" (click)="selectUser(u)">
+      {{ u.name }}
+    </div>
+  </div>
+
+  <div class="chat">
+
+    <div class="messages">
+      <div *ngFor="let m of messages">
+        {{ m.text }}
+      </div>
+    </div>
+
+    <input [(ngModel)]="message" placeholder="message..." />
+    <button (click)="send()">Send</button>
+
+  </div>
+
+</div>

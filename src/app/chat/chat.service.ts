@@ -17,4 +17,6 @@ export class ChatService {
   getConversation(userId: number) {
     return this.http.get(`${this.api}/conversations/get/${userId}/`);
   }
+
+
 }
