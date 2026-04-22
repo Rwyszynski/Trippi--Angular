@@ -1,21 +1,35 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
 
   email = '';
   password = '';
 
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) {}
+
   login() {
-    console.log(this.email, this.password);
+    this.auth.login(this.email, this.password).subscribe({
+      next: (res) => {
+        this.auth.saveToken(res.token);
+        this.router.navigate(['/chat']);
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Login failed');
+      }
+    });
   }
 }
