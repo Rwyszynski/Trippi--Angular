@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  templateUrl: './login.component.html',
   imports: [CommonModule, FormsModule, RouterModule],
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
 
@@ -22,13 +21,15 @@ export class LoginComponent {
   ) {}
 
   login() {
-    this.auth.login(this.email, this.password).subscribe(res => {
-      localStorage.setItem('token', res.token);
-      this.router.navigate(['/chat']);
+    this.auth.login(this.email, this.password).subscribe({
+      next: (res) => {
+        this.auth.saveToken(res.token);
+        this.router.navigate(['/chat']);
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Login failed');
+      }
     });
-  }
-
-  ngOnInit() {
-    console.log('LOGIN LOADED');
   }
 }
