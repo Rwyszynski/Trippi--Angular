@@ -9,3 +9,92 @@ input, button {
   color: white;
   border: 1px solid #333;
 }
+
+.auth-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0f172a; /* dark navy */
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.auth-card {
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 20px;
+  width: 340px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  text-align: center;
+  color: #e2e8f0;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #38bdf8;
+}
+
+.auth-card h2 {
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-card input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: white;
+  transition: 0.2s;
+}
+
+.auth-card input::placeholder {
+  color: #94a3b8;
+}
+
+.auth-card input:focus {
+  border-color: #38bdf8;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(56,189,248,0.2);
+}
+
+.auth-card button {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.auth-card button:hover {
+  background: #0ea5e9;
+}
+
+.auth-card p {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 6px;
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
