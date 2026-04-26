@@ -2,6 +2,7 @@ body {
   background: #121212;
   color: white;
   font-family: Arial;
+    margin: 0;
 }
 
 input, button {

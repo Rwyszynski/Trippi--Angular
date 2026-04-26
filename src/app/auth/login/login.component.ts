@@ -23,7 +23,7 @@ export class LoginComponent {
   login() {
     this.auth.login(this.email, this.password).subscribe({
       next: (res) => {
-        this.auth.saveToken(res.token);
+        this.auth.saveToken(res.token); // ← musi być PRZED navigate
         this.router.navigate(['/chat']);
       },
       error: (err) => {

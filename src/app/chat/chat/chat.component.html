@@ -1,36 +1,46 @@
-<div class="chat-layout">
+<div class="app-container">
 
 
-  <div class="sidebar">
-    <div class="sidebar-header">Users</div>
-
-    <div class="user"
-         *ngFor="let user of users"
-         (click)="selectUser(user)"
-         [class.active]="selectedUser?.id === user.id">
-      {{ user.email }}
-    </div>
+  <div class="top-bar">
+    <div class="app-title">Trippi App</div>
+    <button class="logout-btn" (click)="logout()">Logout</button>
   </div>
 
-  <!-- MAIN CHAT -->
-  <div class="chat">
 
-    <div class="chat-header">
-      {{ selectedUser?.email || 'Select a user' }}
-    </div>
+  <div class="chat-layout">
 
-    <div class="messages">
-      <div *ngFor="let msg of messages"
-           [class.me]="msg.me"
-           class="message">
-        {{ msg.text }}
+
+    <div class="sidebar">
+      <div class="sidebar-header">Users</div>
+
+      <div class="user"
+           *ngFor="let user of users"
+           (click)="selectUser(user)"
+           [class.active]="selectedUser?.userName === user.userName">
+        {{ user.userName }}
       </div>
     </div>
 
-    <div class="input">
-      <input [(ngModel)]="newMessage"
-             placeholder="Type a message..." />
-      <button (click)="send()">Send</button>
+
+    <div class="chat">
+
+      <div class="chat-header">
+        {{ selectedUser?.userName || 'Select a user' }}
+      </div>
+
+      <div class="messages">
+        <div *ngFor="let msg of messages"
+             [class.me]="msg.me"
+             class="message">
+          {{ msg.text }}
+        </div>
+      </div>
+
+      <div class="input">
+        <input [(ngModel)]="newMessage" placeholder="Type a message..." />
+        <button (click)="send()">Send</button>
+      </div>
+
     </div>
 
   </div>
