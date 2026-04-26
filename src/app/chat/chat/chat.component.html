@@ -1,14 +1,12 @@
 <div class="app-container">
 
-
   <div class="top-bar">
     <div class="app-title">Trippi App</div>
+    <button class="profile-btn" (click)="goToProfile()">Mój profil</button>
     <button class="logout-btn" (click)="logout()">Logout</button>
   </div>
 
-
   <div class="chat-layout">
-
 
     <div class="sidebar">
       <div class="sidebar-header">Users</div>
@@ -16,11 +14,17 @@
       <div class="user"
            *ngFor="let user of users"
            (click)="selectUser(user)"
+           (mouseenter)="loadUserInfo(user)"
+           (mouseleave)="hoveredUser = null"
            [class.active]="selectedUser?.userName === user.userName">
         {{ user.userName }}
+        <div class="tooltip" *ngIf="hoveredUser?.id === user.id">
+          <p>🌍 {{ hoveredUser?.country || 'Brak kraju' }}</p>
+          <p>⚧ {{ hoveredUser?.gender || 'Brak płci' }}</p>
+          <p>🎂 {{ hoveredUser?.age || 'Brak wieku' }}</p>
+        </div>
       </div>
     </div>
-
 
     <div class="chat">
 

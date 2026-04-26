@@ -20,15 +20,32 @@ export class RegisterComponent {
     private router: Router
   ) {}
 
+  successMessage = '';
+  errorMessage = '';
+
   register() {
-    console.log('REGISTER CLICK');
+    this.errorMessage = '';
+
+    if (!this.email || !this.email.includes('@')) {
+      this.errorMessage = 'Podaj poprawny email';
+      return;
+    }
+    if (!this.password || this.password.length < 5) {
+      this.errorMessage = 'Hasło musi mieć co najmniej 5 znaków';
+      return;
+    }
 
     this.auth.register(this.email, this.password).subscribe({
       next: (res) => {
-        console.log('SUCCESS', res);
+        this.errorMessage = '';
+        this.successMessage = 'Rejestracja zakończona pomyślnie! Możesz się zalogować.';
       },
       error: (err) => {
-        console.error('ERROR:', err);
+        if (err.status === 409) {
+          this.errorMessage = 'Użytkownik z tym emailem już istnieje.';
+        } else {
+          this.errorMessage = 'Rejestracja nie powiodła się. Spróbuj ponownie.';
+        }
       }
     });
   }

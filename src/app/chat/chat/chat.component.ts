@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
 import {WebsocketService} from '../../websocket/websocket.service';
-
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -37,24 +37,39 @@ export class ChatComponent implements OnInit, OnDestroy {
   loadUsers() {
     this.auth.getAllUsers().subscribe({
       next: (res) => {
+        console.log('users response:', res);
         this.users = res.users;
       },
-      error: (err) => {
-        console.error(err);
-      }
+      error: (err) => console.error(err)
     });
   }
 
   selectUser(user: any) {
+    console.log('selectUser called, user:', user);
     this.selectedUser = user;
     this.messages = [];
+    this.auth.getConversation(user.id).subscribe({
+      next: (res: any) => {
+        console.log('conversation response:', res);
+        this.messages = res.messages.map((m: any) => ({
+          text: m.messageText,
+          me: m.senderId === this.auth.getMyId()
+        }));
+      },
+      error: (err: any) => console.error(err)
+    });
   }
 
   send() {
-    if (!this.newMessage.trim()) return;
-    this.ws.send(this.newMessage);
-    this.messages.push({ text: this.newMessage, me: true });
-    this.newMessage = '';
+    if (!this.newMessage.trim() || !this.selectedUser) return;
+
+    this.auth.sendMessage(this.newMessage, this.selectedUser.id).subscribe({
+      next: () => {
+        this.messages.push({ text: this.newMessage, me: true });
+        this.newMessage = '';
+      },
+      error: (err: any) => console.error(err)
+    });
   }
 
   logout() {
@@ -65,4 +80,18 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.ws.disconnect();
   }
+
+  goToProfile() {
+    this.router.navigate(['/profile']);
+  }
+
+  hoveredUser: any = null;
+
+  loadUserInfo(user: any) {
+    this.auth.getUserById(user.id).subscribe({
+      next: (res: any) => { this.hoveredUser = res; },
+      error: () => { this.hoveredUser = user; }
+    });
+  }
+
 }

@@ -1,0 +1,33 @@
+<div class="profile-container">
+  <div class="profile-card">
+    <h2>Mój profil</h2>
+
+    <div class="field">
+      <label>Kraj</label>
+      <input [(ngModel)]="country" placeholder="np. Polska" />
+    </div>
+
+    <div class="field">
+      <label>Płeć</label>
+      <select [(ngModel)]="gender">
+        <option value="">Wybierz</option>
+        <option value="male">Mężczyzna</option>
+        <option value="female">Kobieta</option>
+        <option value="other">Inne</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Wiek</label>
+      <input type="number" [(ngModel)]="age" placeholder="np. 25" />
+    </div>
+
+    <div class="actions">
+      <button (click)="save()">Zapisz</button>
+      <button (click)="back()">Powrót</button>
+    </div>
+
+    <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </div>
+</div>
