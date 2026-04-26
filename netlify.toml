@@ -1,25 +1,4 @@
 [[redirects]]
-  from = "/api/auth/*"
-  to = "https://alike-sudoku-abstract.ngrok-free.dev/auth/:splat"
-  status = 200
-  force = true
-  headers = {ngrok-skip-browser-warning = "true"}
-
-[[redirects]]
-  from = "/api/users/*"
-  to = "https://alike-sudoku-abstract.ngrok-free.dev/users/:splat"
-  status = 200
-  force = true
-  headers = {ngrok-skip-browser-warning = "true"}
-
-[[redirects]]
-  from = "/api/chat/*"
-  to = "https://alike-sudoku-abstract.ngrok-free.dev/chat/:splat"
-  status = 200
-  force = true
-  headers = {ngrok-skip-browser-warning = "true"}
-
-[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
