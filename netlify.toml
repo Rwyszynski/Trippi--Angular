@@ -1,18 +1,18 @@
 [[redirects]]
   from = "/api/auth/*"
-  to = "http://18.201.53.150:8081/:splat"
+  to = "https://alike-sudoku-abstract.ngrok-free.dev/auth/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/api/users/*"
-  to = "http://18.201.53.150:8082/:splat"
+  to = "https://alike-sudoku-abstract.ngrok-free.dev/users/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/api/chat/*"
-  to = "http://18.201.53.150:8080/:splat"
+  to = "https://alike-sudoku-abstract.ngrok-free.dev/chat/:splat"
   status = 200
   force = true
 
