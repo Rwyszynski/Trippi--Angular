@@ -1,0 +1,22 @@
+[[redirects]]
+  from = "/api/auth/*"
+  to = "http://18.201.53.150:8081/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/users/*"
+  to = "http://18.201.53.150:8082/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/chat/*"
+  to = "http://18.201.53.150:8080/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
