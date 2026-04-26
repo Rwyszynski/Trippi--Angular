@@ -14,7 +14,7 @@ export class WebsocketService {
 
   connect() {
     this.client = new Client({
-      webSocketFactory: () => new SockJS('http://localhost:8080/ws'),
+      webSocketFactory: () => new SockJS('https://couples-significant-alive-continental.trycloudflare.com/ws'),
       reconnectDelay: 5000,
       connectHeaders: {
         Authorization: 'Bearer ' + this.auth.getToken()

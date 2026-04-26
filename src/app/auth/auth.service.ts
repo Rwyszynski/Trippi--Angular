@@ -3,28 +3,24 @@ import { HttpClient } from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import {UsersResponse} from '../models/user.model';
 
+const BASE = 'https://love-delhi-restructuring-press.trycloudflare.com';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private API = 'http://localhost:8081/v1/auth';
+  private API = `${BASE}/auth/v1/auth`;
   private TOKEN_KEY = 'token';
 
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.API}/token`, {
-      email,
-      password
-    });
+    return this.http.post(`${this.API}/token`, { email, password });
   }
 
   register(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.API}/register`, {
-      email,
-      password
-    });
+    return this.http.post(`${this.API}/register`, { email, password });
   }
 
   saveToken(token: string) {
@@ -46,10 +42,8 @@ export class AuthService {
   getAllUsers() {
     const token = this.getToken();
     const myId = this.getMyId();
-    return this.http.get<any>('http://localhost:8082/v1/users/all', {
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
+    return this.http.get<any>(`${BASE}/users/v1/users/all`, {
+      headers: { Authorization: 'Bearer ' + token }
     }).pipe(
       map((res: any) => ({
         ...res,
@@ -59,7 +53,7 @@ export class AuthService {
   }
 
   getUsers() {
-    return this.http.get<UsersResponse>('http://localhost:8081/v1/users/all');
+    return this.http.get<UsersResponse>(`${BASE}/auth/v1/users/all`);
   }
 
   getMyId(): number {
@@ -69,16 +63,15 @@ export class AuthService {
     return Number(payload.sub);
   }
 
-
   getConversation(userId: number): Observable<any> {
-    return this.http.get(`http://localhost:8080/v1/messages/conversations/get/${userId}/`, {
+    return this.http.get(`${BASE}/chat/v1/messages/conversations/get/${userId}/`, {
       headers: { Authorization: 'Bearer ' + this.getToken() }
     });
   }
 
   sendMessage(text: string, receiverId: number): Observable<any> {
     const token = this.getToken();
-    return this.http.post('http://localhost:8080/v1/messages/', {
+    return this.http.post(`${BASE}/chat/v1/messages/`, {
       messageText: text,
       receiverId: receiverId
     }, {
@@ -88,16 +81,15 @@ export class AuthService {
 
   updateProfile(data: { country: string, gender: string, age: number | null }): Observable<any> {
     const token = this.getToken();
-    return this.http.patch('http://localhost:8082/v1/users/profile', data, {
+    return this.http.patch(`${BASE}/users/v1/users/profile`, data, {
       headers: { Authorization: 'Bearer ' + token }
     });
   }
 
   getUserById(id: number): Observable<any> {
     const token = this.getToken();
-    return this.http.get(`http://localhost:8082/v1/users/${id}`, {
+    return this.http.get(`${BASE}/users/v1/users/${id}`, {
       headers: { Authorization: 'Bearer ' + token }
     });
   }
-
 }

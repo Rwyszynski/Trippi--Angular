@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class ChatService {
-  private api = 'http://localhost:8080/v1/messages';
+  private api = 'http://18.201.53.150:8080/v1/messages';
 
   constructor(private http: HttpClient) {}
 
