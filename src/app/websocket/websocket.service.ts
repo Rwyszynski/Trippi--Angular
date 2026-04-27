@@ -14,7 +14,9 @@ export class WebsocketService {
 
   connect() {
     this.client = new Client({
-      webSocketFactory: () => new SockJS('http://18.201.53.150:8080/ws'),
+      webSocketFactory: () => new SockJS('https://alike-sudoku-abstract.ngrok-free.dev/ws'),
+
+
       reconnectDelay: 5000,
       connectHeaders: {
         Authorization: 'Bearer ' + this.auth.getToken()
