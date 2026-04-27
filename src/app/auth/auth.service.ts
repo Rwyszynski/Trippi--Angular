@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import {UsersResponse} from '../models/user.model';
 
-const BASE = 'https://trippi-api.robertointerwento.workers.dev';
+const BASE = 'https://api.thetrippi.uk';
 const NGROK_HEADER = { 'ngrok-skip-browser-warning': 'true' };
 
 @Injectable({
