@@ -14,8 +14,7 @@ export class WebsocketService {
 
   connect() {
     this.client = new Client({
-      webSocketFactory: () => new SockJS('https://alike-sudoku-abstract.ngrok-free.dev/ws'),
-
+      webSocketFactory: () => new SockJS('https://trippi-api.robertointerwento.workers.dev/ws'),
 
       reconnectDelay: 5000,
       connectHeaders: {

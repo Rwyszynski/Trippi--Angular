@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import {UsersResponse} from '../models/user.model';
 
-const BASE = 'https://alike-sudoku-abstract.ngrok-free.dev';
+const BASE = 'https://trippi-api.robertointerwento.workers.dev';
 const NGROK_HEADER = { 'ngrok-skip-browser-warning': 'true' };
 
 @Injectable({
@@ -11,7 +11,8 @@ const NGROK_HEADER = { 'ngrok-skip-browser-warning': 'true' };
 })
 export class AuthService {
 
-  private API = `${BASE}/auth/v1/auth`;
+
+  private API = `${BASE}:8081/v1/auth`;
   private TOKEN_KEY = 'token';
 
   constructor(private http: HttpClient) {}
