@@ -45,12 +45,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   selectUser(user: any) {
-    console.log('selectUser called, user:', user);
     this.selectedUser = user;
     this.messages = [];
     this.auth.getConversation(user.id).subscribe({
       next: (res: any) => {
-        console.log('conversation response:', res);
+        console.log('myId:', this.auth.getMyId(), typeof this.auth.getMyId());
+        console.log('first message senderId:', res.messages[0]?.senderId, typeof res.messages[0]?.senderId);
         this.messages = res.messages.map((m: any) => ({
           text: m.messageText,
           me: m.senderId === this.auth.getMyId()
