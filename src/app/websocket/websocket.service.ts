@@ -14,7 +14,7 @@ export class WebsocketService {
 
   connect() {
     this.client = new Client({
-      webSocketFactory: () => new SockJS('https://trippi-api.robertointerwento.workers.dev/ws'),
+      webSocketFactory: () => new SockJS('https://api.thetrippi.uk/ws'),
 
       reconnectDelay: 5000,
       connectHeaders: {
