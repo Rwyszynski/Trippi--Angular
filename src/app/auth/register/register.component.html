@@ -8,6 +8,7 @@
       <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required />
 
       <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
 
       <button type="submit">Register</button>
     </form>
